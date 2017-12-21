@@ -11,5 +11,3 @@ This program reads a **Markdown** file and converts it to a **HTML** file.
   * it supports a conversion of multiple markdown files : -convert <file1.md> <file2.md>
 * It handles unwanted inputs. When rejected, please check for typos.  
   
-
-
