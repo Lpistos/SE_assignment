@@ -43,7 +43,7 @@ public class MDConverter {
             //System.out.print(doc.getStructureList());
         }
     }
-
+    // create Doc
     static void createDoc(String name){
         Document doc = new Document(name);
         docList.add(doc);
