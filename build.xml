@@ -1,0 +1,93 @@
+<project name="MDC" default="build" xmlns:jacoco="antlib:org.jacoco.ant">
+
+	<taskdef uri="antlib:org.jacoco.ant" resource="org/jacoco/ant/antlib.xml">
+		<classpath path="lib/jacocoant.jar"/>
+	</taskdef>
+
+	<target name="init">
+		<mkdir dir="classes" />
+	</target>
+
+	<target name="build" depends="init"> 
+		<javac srcdir="src" destdir="classes" debug="true" includeantruntime="false" >
+			<classpath path="lib/junit.jar" />
+			<classpath path="lib/hamcrest-core.jar" />
+		</javac>
+	</target>
+
+	<target name="clean">
+		<delete dir="classes" />
+		<delete dir="report" />
+		<delete file="jacoco.exec" />
+	</target>
+
+	<target name="test" depends ="build">
+		<junit showoutput="true" printsummary="on" enabletestlistenerevents="true" fork="true">
+			<classpath path="classes" />
+			<classpath path="lib/junit.jar" />
+			<classpath path="lib/hamcrest-core.jar" />
+
+			<formatter type="plain" usefile="false" />
+
+			<test name="MDTest">
+			</test>
+		</junit>
+	</target>
+
+	<target name="cov-test" depends ="build">
+		<jacoco:coverage>
+			<junit showoutput="true" printsummary="on" enabletestlistenerevents="true" fork="true">
+				<classpath path="classes" />
+				<classpath path="lib/junit.jar" />
+				<classpath path="lib/hamcrest-core.jar" />
+
+				<formatter type="plain" usefile="false" />
+
+				<test name="MDTest">
+				</test>
+			</junit>
+		</jacoco:coverage>
+
+		
+		<jacoco:coverage>
+			<java classname="MDTest" fork="true">
+				<classpath path="classes" />
+				<classpath path="lib/junit.jar" />
+				<classpath path="lib/hamcrest-core.jar" />
+			</java>
+		</jacoco:coverage>
+		<!---->
+	</target>
+	
+	<!--compile the java code in src to build-->
+  	<target name="compile" depends="init" description="compile java sources">
+    	<javac srcdir="${src.dir}" destdir="${build.dir}"/>
+  	</target>
+	
+	<!--generate javadoc-->
+	<target name="doc" depends="init" description="generate documentation">
+		<javadoc sourcepath="${src.dir}" destdir="${doc.dir}"/>
+	</target>
+	
+	
+	<target name="cov-report" depends="cov-test">
+		<jacoco:report>
+			<executiondata>
+				<file file="jacoco.exec" />
+			</executiondata>
+
+			<structure name="MDConverter">
+				<classfiles>
+					<fileset dir="classes" />
+				</classfiles>
+				<sourcefiles>
+					<fileset dir="src" />
+				</sourcefiles>
+			</structure>
+
+			<html destdir="report" />
+		</jacoco:report>
+
+	</target>
+
+</project>
