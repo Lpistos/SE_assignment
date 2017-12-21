@@ -4,7 +4,8 @@ import Structure.*;
 
 public class Document {
     private String name;
-    ArrayList<Structure> structureList = new ArrayList<Structure>();
+
+    private ArrayList<Structure> structureList = new ArrayList<Structure>();
 
     public Document(String name) {
         this.setName(name);
@@ -17,4 +18,10 @@ public class Document {
     public void setName(String name) {
         this.name = name;
     }
+
+    public ArrayList<Structure> getStructureList() {
+        return structureList;
+    }
+
+
 }
