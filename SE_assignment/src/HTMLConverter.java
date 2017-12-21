@@ -103,4 +103,4 @@ public class HTMLConverter {
             bw.write(o.getClass().getField("itemETag").get(o).toString());
         }
     }
-}/////////
+}/////////////final////
