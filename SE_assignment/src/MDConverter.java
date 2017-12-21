@@ -13,11 +13,11 @@ public class MDConverter {
 		//args > 1 (-help)
 		else if (args.length == 1) {
 			if(args[0].equals("-help")) {
-				System.out.println("To convert markdown file to html: MDConverter -convert file_name.md ");
-				System.out.println("To convert multiple markdown files : MDConverter -convert file_name1.md file_name2.md ");
+				System.out.println("Convert .md file to html: MDConverter -convert file_name.md ");
+				System.out.println("Converting multiple .md files to html: MDConverter -convert file_name1.md file_name2.md ");
 			}
 			else {
-				System.out.println("\'" + args[0]+ "\'" + " is not a valid command." + " See\"MDConverter -help\" to get help.");
+				System.out.println("Type \"MDConverter -help\" for the usage.");
 			}
 		}
 		//args > 2
@@ -25,20 +25,16 @@ public class MDConverter {
 			//command -convert
 			if(args[0].equals("-convert")) {
 				for (int i = 1; i < args.length ; i++) {
-					if(args[i].contains(".md")){
-						createDoc(args[i]);
-					} else {
-						System.out.println("\'"+ args[i] + "\'" + "is an invalid input file extension. This program only receives .md files");
-					}
+					createDoc(args[i]);
 				}
-			}else {
-				System.out.println("Not a valid command. Type \"MDConverter -help\" to get help.");
 			}
 		}
-//        createDoc("doc1.md");
-//        createDoc("doc2.md");
-//        createDoc("doc3.md");
-//        createDoc("doc4.md");
+
+        //커맨드 라인 분석해서 알맞는 Document를 만들게 된다.
+        createDoc("doc1.md");
+        createDoc("doc2.md");
+        createDoc("doc3.md");
+        createDoc("doc4.md");
 
         //docList iterate하면서 MDParser과 HTMLConverter이 시작된다.
         for(Document doc : docList){
@@ -47,7 +43,7 @@ public class MDConverter {
             //System.out.print(doc.getStructureList());
         }
     }
-    // create Doc
+
     static void createDoc(String name){
         Document doc = new Document(name);
         docList.add(doc);
