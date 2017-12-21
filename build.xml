@@ -4,6 +4,7 @@
 		<classpath path="lib/jacocoant.jar"/>
 	</taskdef>
 
+	
 	<target name="init">
 		<mkdir dir="classes" />
 	</target>

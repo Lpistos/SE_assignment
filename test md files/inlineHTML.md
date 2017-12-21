@@ -8,7 +8,7 @@
   <tr> <td> Submission </td> <td> Report, Code, Peer evaluation </td> </tr> </table>
 
 <pre><code> if (x > y)
-  return x ;
+  ret urn x ;
 else
   return y ;
 </code></pre>
